@@ -9,12 +9,17 @@ html {
 }
 
 .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   inline-size: 1200px;
   block-size: 100%;
   margin: auto;
   color: #fff;
   font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
   background-color: #1b1919;
 }
 
@@ -44,8 +49,8 @@ ol {
   gap: 30px;
   inline-size: 100%;
   max-inline-size: 100%;
-  margin: 0 auto;
-  padding: 135px 30px 133px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .result {
@@ -70,7 +75,7 @@ ol {
 
 .search-form {
   display: grid;
-  grid-template-columns: 225px 212px 1fr;
+  grid-template-columns: repeat(3, 1fr);
   justify-items: start;
   align-items: start;
   gap: 40px;
@@ -83,19 +88,14 @@ ol {
 
 .search-form__fieldset-title {
   margin-block-end: 5px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.2;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .search-form__label {
   width: fit-content;
-}
-
-.search-form__label-text {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.2;
+  cursor: pointer;
 }
 
 .search-form__label:hover > .search-form__label-text {
@@ -113,35 +113,35 @@ ol {
   appearance: none;
   inline-size: 100%;
   border: none;
-  border-block-start: 1px solid #fff;
-  border-block-end: 1px solid #fff;
+  border-block-start: 1px solid currentColor;
+  border-block-end: 1px solid currentColor;
   padding: 2px 2px 0px;
   color: #fff;
   background-color: transparent;
-  font-family: 'Fira Sans Condensed', Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.2;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .search-form__textfield::placeholder {
   color: rgb(255 255 255 / 0.7);
-  font-family: 'Fira Sans Condensed', Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.2;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .search-form__textfield:active {
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
 }
 
 .search-form__textfield:focus {
   outline: none;
 }
 
-.search-form__label:has(.search-form__textfield:focus-visible) {
-  outline: 1px solid #fff;
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -158,11 +158,6 @@ ol {
   gap: 6px;
 }
 
-.search-form__label:has(.search-form__checkbox:focus-visible) {
-  outline: 1px solid #fff;
-  outline-offset: 1px;
-}
-
 .visually-hidden {
   position: absolute;
   inline-size: 1px;
@@ -175,10 +170,10 @@ ol {
 
 .search-form__pseudo-checkbox {
   position: relative;
-  display: inline-block;
+  display: block;
   inline-size: 19px;
   block-size: 19px;
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
 }
 
 .search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
@@ -195,14 +190,14 @@ ol {
 .button {
   inline-size: 100%;
   min-inline-size: 150px;
-  border: 1px solid #fff;
+  border: 1px solid currentColor;
   padding: 6px 10px;
   color: #fff;
   background-color: transparent;
-  font-family: 'Fira Sans Condensed', Arial, sans-serif;
-  font-size: 18px;
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: inherit;
   cursor: pointer;
 }
 
@@ -220,7 +215,7 @@ ol {
 }
 
 .button:focus-visible {
-  outline: 1px solid #fff;
+  outline: 1px solid currentColor;
   outline-offset: 1px;
 }
 
@@ -248,13 +243,9 @@ ol {
 
 .content__list {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
   max-block-size: 298px;
   min-block-size: 298px;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .content__list::-webkit-scrollbar {
@@ -270,6 +261,10 @@ ol {
 
 .content__list::-webkit-scrollbar-thumb {
   background-color: rgb(84 80 80 /0.7);
+}
+
+.content__list-item:not(:last-of-type) {
+  margin-bottom: 32px;
 }
 
 .content__card-link {
@@ -296,17 +291,16 @@ ol {
 }
 
 .content__list-item:has(.content__card-link:focus-visible) {
-  outline: 1px solid #fff;
+  outline: 1px solid currentColor;
   outline-offset: -1px;
 }
 
 .content__video-card {
   display: grid;
-  grid-template-columns: 1fr 197px;
+  grid-template-columns: 186px 1fr;
   gap: 10px;
   inline-size: 100%;
-  block-size: 107px;
-  max-block-size: 107px;
+  min-block-size: 100px;
   padding: 2px;
   padding-right: 0;
 }
@@ -319,11 +313,13 @@ ol {
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content__video-card-description {
-  font-size: 18px;
-  font-weight: 400;
+  max-inline-size: 100%;
   line-height: 0.9;
 }
 
@@ -333,9 +329,4 @@ ol {
   justify-self: end;
   object-fit: cover;
   object-position: center;
-}
-
-.preloader-template {
-  position: absolute;
-  inset: 0;
 }
